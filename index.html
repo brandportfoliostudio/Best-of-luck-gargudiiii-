@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Best of Luck 🤍</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -33,14 +33,12 @@ body {
   justify-content: center;
 }
 
-/* FLOWING BACKGROUND */
 @keyframes bgFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* GLASS CARD */
 .card {
   width: 90%;
   max-width: 440px;
@@ -55,7 +53,6 @@ body {
   transform-style: preserve-3d;
 }
 
-/* BREATHING FLOAT */
 @keyframes floatCard {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
@@ -80,7 +77,6 @@ p {
   animation-delay: 0.5s;
 }
 
-/* TEXT ANIMATIONS */
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -91,7 +87,6 @@ p {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* HEART PARTICLES */
 .heart {
   position: absolute;
   font-size: 18px;
@@ -104,7 +99,6 @@ p {
   to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
 }
 
-/* MUSIC BAR */
 .music {
   position: absolute;
   bottom: 20px;
@@ -141,7 +135,7 @@ p {
 
 <body>
 
-<audio id="song" autoplay loop>
+<audio id="song" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
@@ -157,7 +151,6 @@ and I'll be ur biggest supporter I'll clap so loud that u will forget who didn't
 
 once again best of luck gargudiiii 🫶🏻
   </p>
-
   <div class="tap">tap anywhere if music doesn’t play 🎶</div>
 </div>
 
@@ -171,11 +164,17 @@ once again best of luck gargudiiii 🫶🏻
 <script>
 const audio = document.getElementById("song");
 
+/* Start song from 0:55 */
+audio.addEventListener("loadedmetadata", () => {
+  audio.currentTime = 55;
+});
+
 function playMusic() {
+  audio.currentTime = 55;
   audio.play();
 }
 
-// hearts
+/* Floating hearts */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -186,7 +185,7 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 8000);
 }, 400);
 
-// parallax tilt
+/* Parallax tilt */
 document.addEventListener("mousemove", e => {
   const card = document.querySelector(".card");
   const x = (window.innerWidth / 2 - e.clientX) / 40;
@@ -196,4 +195,4 @@ document.addEventListener("mousemove", e => {
 </script>
 
 </body>
-  </html>
+</html>
